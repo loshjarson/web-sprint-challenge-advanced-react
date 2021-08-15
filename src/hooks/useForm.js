@@ -10,10 +10,11 @@ const errorData = {
     zip: "",
   };
 
-const useForm = (initialValue) => {
-    const [form, setForm] = useState(initialValue)
+const useForm = (initialValue, setCart) => {
+    const [values, setValues] = useState(initialValue)
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [errors, setErrors] = useState(errorData);
+    const [submission, setSubmission] = useState(initialValue)
 
     const handleChanges = e => {
         const errorMessage = handleErrors(e.target.name, e.target.value);
@@ -27,8 +28,8 @@ const useForm = (initialValue) => {
           [e.target.name]: errorMessage
         });
     
-        setForm({
-          ...form,
+        setValues({
+          ...values,
           [e.target.name]: e.target.value
         });
       }
@@ -47,25 +48,28 @@ const useForm = (initialValue) => {
 
         const submitErrors = {};
         Object.keys(errors).forEach(field => {
-            submitErrors[field] = handleErrors(field, form[field])
+            submitErrors[field] = handleErrors(field, values[field])
         });
-        if(submitErrors.length === 0){
+        const hasErrors = (submitErrors.firstName === undefined && submitErrors.lastName === undefined && submitErrors.address === undefined && submitErrors.city === undefined && submitErrors.state === undefined && submitErrors.zip === undefined);
+
+        if(hasErrors){
             setShowSuccessMessage(true);
-        
-            setForm({
+            setSubmission(values);
+            setValues({
                 firstName: "",
                 lastName: "",
                 address: "",
                 city: "",
                 state: "",
                 zip: "",
-            })  
+            })
+            setCart([])  
         } else {
             alert("All fields must be completed before submitting")
         }
       };
 
-    return [form, handleChanges, handleSubmit, showSuccessMessage, errors];
+    return [values, handleChanges, handleSubmit, showSuccessMessage, errors, submission];
 }
 
 export default useForm;

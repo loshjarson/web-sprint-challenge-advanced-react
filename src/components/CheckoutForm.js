@@ -15,8 +15,7 @@ const initialValue = {
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  
-  const [values, handleChanges, handleSubmit, showSuccessMessage, errors] = useForm(initialValue);
+  const [values, handleChanges, handleSubmit, showSuccessMessage, errors, submission] = useForm(initialValue, props.setCart);
 
   return (
     <>
@@ -76,11 +75,11 @@ const CheckoutForm = (props) => {
           <br />
           <br />
           <p>
-            {values.firstName} {values.lastName}
+            {submission.firstName} {submission.lastName}
           </p>
-          <p>{values.address}</p>
+          <p>{submission.address}</p>
           <p>
-            {values.city}, {values.state} {values.zip}
+            {submission.city}, {submission.state} {submission.zip}
           </p>
         </div>
       )}
