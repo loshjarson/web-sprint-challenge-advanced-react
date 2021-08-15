@@ -60,7 +60,7 @@ function App() {
             />
           )}
         />
-        <Route path="/checkout" render={(props) => (<CheckoutForm {...props} setCart={setCart}/>)}/>
+        <Route path="/checkout" component={CheckoutForm} />
       </Router>
     </div>
   );

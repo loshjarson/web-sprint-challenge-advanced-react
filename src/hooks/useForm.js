@@ -10,7 +10,7 @@ const errorData = {
     zip: "",
   };
 
-const useForm = (initialValue, setCart) => {
+const useForm = (initialValue) => {
     const [values, setValues] = useState(initialValue)
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [errors, setErrors] = useState(errorData);
@@ -71,8 +71,7 @@ const useForm = (initialValue, setCart) => {
                 city: "",
                 state: "",
                 zip: "",
-            })
-            setCart([])  
+            })  
         } else {
             alert("All fields must be completed before submitting")
         }

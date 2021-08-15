@@ -20,7 +20,7 @@ describe("Checkout Form tests", ()=>{
       target: { value: "test value last name" },
     });
     fireEvent.change(screen.getByLabelText(/address/i), {
-      target: { value: "test value address" },
+      target: { value: "22 test value address" },
     });
     fireEvent.change(screen.getByLabelText(/city/i), {
       target: { value: "test value city" },
@@ -29,7 +29,7 @@ describe("Checkout Form tests", ()=>{
       target: { value: "test value state" },
     });
     fireEvent.change(screen.getByLabelText(/zip/i), {
-      target: { value: "test value zip" },
+      target: { value: "91311" },
     });
   
     fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
