@@ -28,7 +28,7 @@ test("shows success message on submit with form details", () => {
     userEvent.type(zipInput, "91311")
 
     userEvent.click(submitButton)
-
+    
     expect(screen.getByTestId("successMessage")).toBeInTheDocument();
 
 });
