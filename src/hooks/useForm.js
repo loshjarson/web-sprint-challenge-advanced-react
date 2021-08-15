@@ -40,7 +40,16 @@ const useForm = (initialValue, setCart) => {
 
         const emailRegex = /(.*)@(.*)\.(.+)/g;
         if (fieldName === "email" && !fieldValue.match(emailRegex))
-            return `${fieldName} must be a valid email address.`;        
+            return `${fieldName} must be a valid email address.`; 
+
+        const addressRegex = /(\d{1,}) [a-zA-Z0-9\s]+(\.)?/g;
+        if (fieldName === "address" && !fieldValue.match(addressRegex))
+            return `${fieldName} must be a valid address.`;
+        
+        
+        const zipRegex = /[0-9]{5,6}/g
+        if (fieldName === "zip" && !fieldValue.match(zipRegex))
+            return `${fieldName} must be a valid zip code.`;
     }
 
     const handleSubmit = (e) => {
