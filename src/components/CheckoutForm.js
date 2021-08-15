@@ -16,7 +16,7 @@ const initialValue = {
 
 const CheckoutForm = (props) => {
   
-  const [values, handleChanges, handleSubmit, showSuccessMessage] = useForm(initialValue);
+  const [values, handleChanges, handleSubmit, showSuccessMessage, errors] = useForm(initialValue);
 
   return (
     <>
@@ -30,6 +30,7 @@ const CheckoutForm = (props) => {
             onChange={handleChanges}
           />
         </label>
+        {(errors.firstName) && <p data-testid="firstNameError" className="error">Error: {errors.firstName}</p>}
         <label>
           Last Name:
           <input
@@ -38,6 +39,7 @@ const CheckoutForm = (props) => {
             onChange={handleChanges}
           />
         </label>
+        {(errors.lastName) && <p data-testid="lastNameError" className="error">Error: {errors.lastName}</p>}
         <label>
           Address:
           <input
@@ -46,18 +48,22 @@ const CheckoutForm = (props) => {
             onChange={handleChanges}
           />
         </label>
+        {(errors.address) && <p data-testid="addressError" className="error">Error: {errors.address}</p>}
         <label>
           City:
           <input name="city" value={values.city} onChange={handleChanges} />
         </label>
+        {(errors.city) && <p data-testid="cityError" className="error">Error: {errors.city}</p>}
         <label>
           State:
           <input name="state" value={values.state} onChange={handleChanges} />
         </label>
+        {(errors.state) && <p data-testid="stateError" className="error">Error: {errors.state}</p>}
         <label>
           Zip:
           <input name="zip" value={values.zip} onChange={handleChanges} />
         </label>
+        {(errors.zip) && <p data-testid="zipError" className="error">Error: {errors.zip}</p>}
         <button>Checkout</button>
       </form>
 
